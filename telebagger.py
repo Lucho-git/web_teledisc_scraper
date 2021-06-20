@@ -14,7 +14,6 @@ def StartTelegramForwarding():
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
     stringsesh = '1BVtsOIIBuxkl8w5skOHjonDCR_DFvM7luxNQA8itLwXv1CYkUSzhUh-sjw6I-qA6esNDR7JLmxUhCdXXE96vb6wMxPTmbWRDTDD626CeEmGa3ohLgJaoH1CeG_28DuYLqnNVsumwhp-rVqFb4Ksvo7GNgnCOiNUOpMthcHT2neKufl6c31LpedhxGoBCnbZIFc4peEK_hwqlJgW7uQAVD2p8LD0LVR70EQxjXnwJ-ROfWScorMUrcV7C2NA1Fg71KFhWpGSoyfkKzgdAD7OIM3E5TdXLdpX-7g4lwQCloCL1GODnhGQD28eAwcHZ4Y7b_OWO3Ueeej7esgIbzx7NAJGJkfTTifI='
     client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
-    dialogue = client.get_dialogs()
     
     @client.on(events.NewMessage()) 
     async def my_event_handler(event):
@@ -36,6 +35,7 @@ def StartTelegramForwarding():
 
     print("Starting telegram scraper")
     client.start()
+    client.get_dialogs()
     client.run_until_disconnected()
 
 StartTelegramForwarding()
