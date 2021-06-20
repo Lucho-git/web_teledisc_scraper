@@ -12,7 +12,7 @@ def SendMessageToAlwaysWin(message):
 def StartTelegramForwarding():
     api_id = 5747368
     api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
-    stringsesh = '1BVtsOIIBuziBvZO_VwaerS4NJoP1vAyxIiLLYPdQNn2lXhRFMH2GY_ayqJEM-ax5I-GD4-Kk_lCPjXBTxpmyaDO-hKYeYSyjNYYZ3riEVwFnsy4PGwrXxRwdiKZrICrcEKih0yoTO7lVDO8APaiDpx3E2pFDXyYRhd66Rnj0UyDEcnHPRstadaNTN34BBtLtl7T3LwxQn58ka8sZVRdKAscBjLwiwj8IF4Lwu0oHAH20Ozd5mh8ior82nBz1MRha_C-o6ehdPwhSHFBCCzBqw_zcJ7RjNeeWS4BZ2Jn6XlHatuTXctaMieFymtJkCtEK2gJj9eaf9v5EZGoc1vp9liZ_ra7A7pA='
+    stringsesh = '1BVtsOIIBuxkl8w5skOHjonDCR_DFvM7luxNQA8itLwXv1CYkUSzhUh-sjw6I-qA6esNDR7JLmxUhCdXXE96vb6wMxPTmbWRDTDD626CeEmGa3ohLgJaoH1CeG_28DuYLqnNVsumwhp-rVqFb4Ksvo7GNgnCOiNUOpMthcHT2neKufl6c31LpedhxGoBCnbZIFc4peEK_hwqlJgW7uQAVD2p8LD0LVR70EQxjXnwJ-ROfWScorMUrcV7C2NA1Fg71KFhWpGSoyfkKzgdAD7OIM3E5TdXLdpX-7g4lwQCloCL1GODnhGQD28eAwcHZ4Y7b_OWO3Ueeej7esgIbzx7NAJGJkfTTifI='
     client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
     dialogue = client.get_dialogs()
     
