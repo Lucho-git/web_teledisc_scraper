@@ -1,51 +1,37 @@
-#Initializations
-
-import sys
-import asyncio   #desyncs telegram calls to make timings work, idk
-import nest_asyncio          #this should only be needed when using, google colabs or other webbased stuff, I think its because these sites run in a coding loop or are different from regular env
-import telethon.sync
-#import telebot             #import telegram bot library
-import requests
-
-from telethon import TelegramClient, events
-from telethon.sync import TelegramClient
-from telethon.tl.types import (PeerChannel)
-from telethon import functions, types
+from telethon import TelegramClient, events, sync, utils
 from telethon.sessions import StringSession
 
-async def first_log_in(phone, api_id, api_hash):
-    client = TelegramClient(phone, api_id, api_hash)
-    await client.connect()  
-    print("Client Connected")
 
-    if not await client.is_user_authorized():
-      await client.send_code_request(phone)
-      print("Sending Code")
-      try:
-        await client.sign_in(phone, input('Enter the code: '))
-      except Exception as e:
-        print(e)
-    else:
-      print("Client Authorized ....")
-    stringsesh = StringSession.save(client.session)
-    print("Saving Session")
-    await client.disconnect()
-    print("Disconnecting\n")
-      
-    return stringsesh
+def StartTelegramForwarding():
+    api_id = 5747368
+    api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
+    stringsesh = '1BVtsOIIBuziBvZO_VwaerS4NJoP1vAyxIiLLYPdQNn2lXhRFMH2GY_ayqJEM-ax5I-GD4-Kk_lCPjXBTxpmyaDO-hKYeYSyjNYYZ3riEVwFnsy4PGwrXxRwdiKZrICrcEKih0yoTO7lVDO8APaiDpx3E2pFDXyYRhd66Rnj0UyDEcnHPRstadaNTN34BBtLtl7T3LwxQn58ka8sZVRdKAscBjLwiwj8IF4Lwu0oHAH20Ozd5mh8ior82nBz1MRha_C-o6ehdPwhSHFBCCzBqw_zcJ7RjNeeWS4BZ2Jn6XlHatuTXctaMieFymtJkCtEK2gJj9eaf9v5EZGoc1vp9liZ_ra7A7pA='
+    client = TelegramClient(StringSession(stringsesh), api_id, api_hash)
+    
+    
+    @client.on(events.NewMessage())  # chats='channel_name'
+    async def my_event_handler(event):
+        print(event.raw_text)
+        # chat_from = event.chat if event.chat else (await event.get_chat())  # telegram MAY not send the chat enity
+        # chat_title = chat_from.title
+        # print(chat_title)
 
+        sender = await event.get_sender()
+        chat = await event.get_chat()
+        sender_id = str(sender.id)
+        channel_name = utils.get_display_name(sender)
+        msg = "Channel name: " + channel_name + " | ID: " + sender_id
+        print(msg)
+        if sender_id == "1375168387":
+            SendMessageToAlwaysWin(event.raw_text)
+        elif chat.id == 1899129008:
+            print("Robot Section +++")
+            if str(event.raw_text) == '/stop':
+              print('Exiting....')
+              await client.disconnect()
 
+    print("Starting telegram scraper")
+    client.start()
+    client.run_until_disconnected()
 
-def main_loop()
-  nest_asyncio.apply()
-  loop = asyncio.get_event_loop()
-  stringsesh = None
-  api_id = '5747368'
-  api_hash = '19f6d3c9d8d4e6540bce79c3b9223fbe'
-  phone = '+61478638278'
-
-  stringsesh = asyncio.run(first_log_in(phone, api_id, api_hash))
-  print("finished up")
-  print(stringsesh)
-
-main_loop()
+StartTelegramForwarding()
