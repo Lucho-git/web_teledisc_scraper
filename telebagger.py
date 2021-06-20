@@ -1,5 +1,13 @@
 from telethon import TelegramClient, events, sync, utils
 from telethon.sessions import StringSession
+import requests
+
+
+def SendMessageToAlwaysWin(message):
+    #message= "<@&834911692303237172>\n" + message
+    mUrl = "https://ptb.discord.com/api/webhooks/838079506660851762/7-lpGNlqWGGlO08XZJ3RwAvSXpWGDf5J6Z4ro5bsdtogYGGXovVfmYGmCb3Jvr1RvtWG"
+    data = {"content": message}
+    response = requests.post(mUrl, json=data)
 
 
 def StartTelegramForwarding():
@@ -12,9 +20,6 @@ def StartTelegramForwarding():
     @client.on(events.NewMessage())  # chats='channel_name'
     async def my_event_handler(event):
         print(event.raw_text)
-        # chat_from = event.chat if event.chat else (await event.get_chat())  # telegram MAY not send the chat enity
-        # chat_title = chat_from.title
-        # print(chat_title)
 
         sender = await event.get_sender()
         chat = await event.get_chat()
@@ -26,6 +31,7 @@ def StartTelegramForwarding():
             SendMessageToAlwaysWin(event.raw_text)
         elif chat.id == 1899129008:
             print("Robot Section +++")
+            SendMessageToAlwaysWin(event.raw_text)
             if str(event.raw_text) == '/stop':
               print('Exiting....')
               await client.disconnect()
