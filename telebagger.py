@@ -18,7 +18,7 @@ def StartTelegramForwarding():
     
     @client.on(events.NewMessage()) 
     async def my_event_handler(event):
-        print(event.raw_text)
+        #print(event.raw_text)
 
         sender = await event.get_sender()
         chat = await event.get_chat()
