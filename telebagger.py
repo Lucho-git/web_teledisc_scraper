@@ -25,7 +25,7 @@ def StartTelegramForwarding():
         sender_id = str(sender.id)
         channel_name = utils.get_display_name(sender)
         msg = "Channel name: " + channel_name + " | ID: " + sender_id
-        print(msg)
+        #print(msg)
         if sender_id == "1375168387":
             SendMessageToAlwaysWin(event.raw_text)
         elif chat.id == 1899129008:
