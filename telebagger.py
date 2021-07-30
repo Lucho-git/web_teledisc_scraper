@@ -34,7 +34,7 @@ def StartTelegramForwarding():
             print("Robot Section +++")
             if str(event.raw_text) == '/stop':
               print('Exiting....')
-              await client.disconnect()
+              #await client.disconnect()
 
     print("Starting telegram scraper")
     client.start()
