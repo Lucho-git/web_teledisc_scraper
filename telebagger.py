@@ -29,7 +29,7 @@ def StartTelegramForwarding():
         #print(msg)
         if sender_id == "1375168387":
             SendMessageToAlwaysWin(event.raw_text)
-            await client.send_message(1576065688, str(event.raw_text))            
+            await client.send_message(1576065688, event.message)            
         elif chat.id == 1899129008:
             print("Robot Section +++")
             if str(event.raw_text) == '/stop':
